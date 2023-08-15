@@ -1,7 +1,14 @@
 # Path to the AssemblyInfo.cs file
 #$assemblyInfoPath = "C:\C#_PROGRAM\Devops student task IAI\custom_student_task\copy_project_of_assemblyinfo.cs"
 #$assemblyInfoPath = "C:\C#_PROGRAM\Devops student task IAI\custom_student_task\Assembly_info\Program.cs"
-$assemblyInfoPath= "https://dev.azure.com/ilaigamzu13/Devops_student_task/_git/DevOps_task3?path=/project_2/Assembly_info.cs&version=GBmaster"
+#$assemblyInfoPath= "https://dev.azure.com/ilaigamzu13/Devops_student_task/_git/DevOps_task3?path=/project_2/Assembly_info.cs&version=GBmaster"
+
+
+# Get the directory where the script is located
+$scriptDirectory = $PSScriptRoot
+
+# Define the relative path to the AssemblyInfo.cs file
+$assemblyInfoPath = Join-Path $scriptDirectory "Assembly_info\Program.cs"
 # Read the content of AssemblyInfo.cs
 $content = Get-Content -Path $assemblyInfoPath
 
