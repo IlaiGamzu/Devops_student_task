@@ -1,19 +1,42 @@
-- powershell: |
-    param(
-        [string]$ValueFromPipeline_1 = "tudent Task",
-        [string]$ValueFromPipeline_2 = "ilai",
-        [string]$ValueFromPipeline_3 = "Sort App"
-    )
-    
-    jobs:
-- job: Build
-  steps:
-  - powershell: |
-      $env:FILE_1_PATH = "$(Build.SourcesDirectory)\path\to\file_1.txt"
-      $env:FILE_2_PATH = "$(Build.SourcesDirectory)\path\to\file_2.txt"
-      $env:OUTPUT_FILE_PATH = "$(Build.SourcesDirectory)\path\to\file_sol.txt"
+---
+trigger:
+  - main
+pool:
+  vmImage: windows-latest
+jobs:
+  - job: Build
+    steps:
+      - task: UseDotNet@2
+        inputs:
+          packageType: sdk
+          installationPath: $(Agent.ToolsDirectory)/dotnet
+          version: 3.1.x
+        displayName: Install .NET SDK
+      - script: >
+          dotnet build $(Build.SourcesDirectory)\Program.csproj --configuration
+          Release
+        displayName: Build C# project
+      - powershell: >
+          param(
+            [string]$ValueFromPipeline_1 = "Student Task",
+            [string]$ValueFromPipeline_2 = "ilai",
+            [string]$ValueFromPipeline_3 = "Sort App"
+          )
 
-      dotnet run
 
-    .\ https://dev.azure.com/ilaigamzu13/Devops_student_task/_git/DevOps_task3?path=/project_2/custom_1.ps1&version=GBmaster -ValueFromPipeline_1 $ValueFromPipeline_1 -ValueFromPipeline_2 $ValueFromPipeline_2 -ValueFromPipeline_3 $ValueFromPipeline_3
-  displayName: 'Run PowerShell script'
+          $env:FILE_1_PATH = "$(Build.SourcesDirectory)\path\to\file_1.txt"
+
+          $env:FILE_2_PATH = "$(Build.SourcesDirectory)\path\to\file_2.txt"
+
+          $env:OUTPUT_FILE_PATH = "$(Build.SourcesDirectory)\path\to\file_sol.txt"
+
+
+          # Run your .NET program or any other tasks
+
+          dotnet run
+
+
+          # Run the PowerShell script
+
+          .\custom_1.ps1 -ValueFromPipeline_1 $ValueFromPipeline_1 -ValueFromPipeline_2 $ValueFromPipeline_2 -ValueFromPipeline_3 $ValueFromPipeline_3
+        displayName: Run PowerShell script
