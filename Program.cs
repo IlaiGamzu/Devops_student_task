@@ -14,9 +14,9 @@ namespace Devops_student_task
             /* Two files that contains the lists 
              * Output file that contain the sorted list.
              */ 
-            string file_1 = "https://dev.azure.com/ilaigamzu13/Devops_student_task/_git/DevOps_task3?path=/project_2/file_1.txt&version=GBmaster";
-            string file_2 = "https://dev.azure.com/ilaigamzu13/Devops_student_task/_git/DevOps_task3?path=/project_2/file_2.txt&version=GBmaster";
-            string output_file = "https://dev.azure.com/ilaigamzu13/Devops_student_task/_git/DevOps_task3?path=/project_2/file_sol.txt&version=GBmaster";
+            string file_1 = @"file_1.txt";
+            string file_2 = @"file_2.txt";
+            string output_file = @"output_file.txt";
             string string_file_1 = file_option(file_1);
             string string_file_2 = file_option(file_2);
             // Split the contents into words based on whitespace
