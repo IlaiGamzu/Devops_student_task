@@ -14,9 +14,9 @@ namespace Devops_student_task
             /* Two files that contains the lists 
              * Output file that contain the sorted list.
              */ 
-            string file_1 = @"file_1.txt";
-            string file_2 = @"file_2.txt";
-            string output_file = @"output_file.txt";
+            string file_1 = @"file_1.txt"; //Path.Combine(Directory.GetCurrentDirectory(), "file_1.txt");
+            string file_2 = @"file_2.txt"; //Path.Combine(Directory.GetCurrentDirectory(), "file_2.txt");
+            string output_file = @"file_sol.txt"; //Path.Combine(Directory.GetCurrentDirectory(), "file_sol.txt");
             string string_file_1 = file_option(file_1);
             string string_file_2 = file_option(file_2);
             // Split the contents into words based on whitespace
