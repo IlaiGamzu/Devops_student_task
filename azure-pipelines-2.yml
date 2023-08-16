@@ -15,9 +15,6 @@ jobs:
     buildConfiguration: 'Build'
 
   steps:
-  - checkout: self
-  - script: dotnet build sort_list.csproj --configuration $(buildConfiguration) #'**/*.csproj' --configuration $(buildConfiguration)
-    displayName: 'Run sorted list build'
 
   - powershell: |
       param(
@@ -36,3 +33,6 @@ jobs:
       # Run the PowerShell script
       .\custom_1.ps1 -ValueFromPipeline_1 $ValueFromPipeline_1 -ValueFromPipeline_2 $ValueFromPipeline_2 -ValueFromPipeline_3 $ValueFromPipeline_3
     displayName: 'Run PowerShell script'
+  - checkout: self
+  - script: dotnet build sort_list.csproj --configuration $(buildConfiguration) #'**/*.csproj' --configuration $(buildConfiguration)
+    displayName: 'Run sorted list build'
