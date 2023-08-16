@@ -16,7 +16,16 @@ jobs:
 
           $env:OUTPUT_FILE_PATH = "$(Build.SourcesDirectory)\path\to\file_sol.txt"
 
-
+      - task: Assembly-Info-NetCore@3
+        inputs:
+          Path: '$(Build.SourcesDirectory)'
+          FileNames: 'Assembly_info.csproj'
+          InsertAttributes: false
+          FileEncoding: 'auto'
+          WriteBOM: false
+          LogLevel: 'verbose'
+          FailOnWarning: false
+          DisableTelemetry: false
           # Run the PowerShell script dotnet run
       - task: PowerShell@2
         inputs:
