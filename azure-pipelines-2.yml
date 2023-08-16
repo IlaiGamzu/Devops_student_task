@@ -35,5 +35,5 @@ jobs:
 
   - checkout: self
 
-  - script: dotnet build path/to/your/project/sort_list.csproj --configuration $(buildConfiguration)
+  - script: dotnet build sort_list.csproj --configuration $(buildConfiguration)
     displayName: 'Run sorted list build'
