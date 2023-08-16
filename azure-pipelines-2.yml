@@ -1,35 +1,24 @@
-# ASP.NET Core
-# Build and test ASP.NET Core projects targeting .NET Core.
-# Add steps that run tests, create a NuGet package, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
-
+---
 trigger:
-- master
-
+  - master
 jobs:
-- job: run_custom_task
-  pool:
-    vmImage: ubuntu-latest
+  - job: run_custom_task
+    pool:
+      vmImage: ubuntu-latest
+    variables:
+      buildConfiguration: Build
+    steps:
+      - powershell: >
+          
+          $env:FILE_1_PATH = "$(Build.SourcesDirectory)\path\to\file_1.txt"
 
-  variables:
-    buildConfiguration: 'Build'
-    
+          $env:FILE_2_PATH = "$(Build.SourcesDirectory)\path\to\file_2.txt"
 
-  steps:
-  - powershell: |
+          $env:OUTPUT_FILE_PATH = "$(Build.SourcesDirectory)\path\to\file_sol.txt"
 
-      $env:FILE_1_PATH = "$(Build.SourcesDirectory)\path\to\file_1.txt"
-      $env:FILE_2_PATH = "$(Build.SourcesDirectory)\path\to\file_2.txt"
-      $env:OUTPUT_FILE_PATH = "$(Build.SourcesDirectory)\path\to\file_sol.txt"
 
-      # Run the PowerShell script
-      powershell -File custom_1.ps1 -ValueFromPipeline_1 "Student Task" -ValueFromPipeline_2 "Ilai Gam Zu Letova" -ValueFromPipeline_3 "Sort App"
-
-      # Run tasks
-      dotnet run
-    displayName: 'Run PowerShell script'
-
-  - checkout: self
-
-  - script: dotnet build sort_list.csproj --configuration $(buildConfiguration)
-    displayName: 'Run sorted list build'
+          # Run the PowerShell script dotnet run
+      - task: PowerShell@2
+        inputs:
+          filePath: custom_1.ps1
+          arguments: '"Student Task", "Ilai Gam Zu Letova", "Sort App"'
