@@ -15,7 +15,7 @@ jobs:
     buildConfiguration: 'Build'
 
   steps:
-  - script: dotnet build $(Build.SourcesDirectory)/path/to/your/project/sorted_list.csproj --configuration $(buildConfiguration)
+  - script: dotnet build $(Build.SourcesDirectory)https://dev.azure.com/ilaigamzu13/_git/Devops%20student%20task?path=/DevOps_sol.csproj --configuration $(buildConfiguration)
     displayName: 'Run sorted list build'
 
   - powershell: |
