@@ -15,21 +15,25 @@ jobs:
     buildConfiguration: 'Build'
 
   steps:
-
   - powershell: |
-      # param([string]$ValueFromPipeline_1='Student Task', [string]$ValueFromPipeline_2='ilai', [string]$ValueFromPipeline_3='Sort App')
-      param($ValueFromPipeline_1="Student Task", $ValueFromPipeline_2="ilai", $ValueFromPipeline_3="Sort App")
+      param(
+        [string]$ValueFromPipeline_1 = "Student Task",
+        [string]$ValueFromPipeline_2 = "ilai",
+        [string]$ValueFromPipeline_3 = "Sort App"
+      )
 
       $env:FILE_1_PATH = "$(Build.SourcesDirectory)\path\to\file_1.txt"
       $env:FILE_2_PATH = "$(Build.SourcesDirectory)\path\to\file_2.txt"
       $env:OUTPUT_FILE_PATH = "$(Build.SourcesDirectory)\path\to\file_sol.txt"
 
-      # Run your .NET program or any other tasks
-      dotnet run
-
       # Run the PowerShell script
       .\custom_1.ps1 -ValueFromPipeline_1 $ValueFromPipeline_1 -ValueFromPipeline_2 $ValueFromPipeline_2 -ValueFromPipeline_3 $ValueFromPipeline_3
+
+      # Run tasks
+      dotnet run
     displayName: 'Run PowerShell script'
+
   - checkout: self
-  - script: dotnet build sort_list.csproj --configuration $(buildConfiguration) #'**/*.csproj' --configuration $(buildConfiguration)
+
+  - script: dotnet build path/to/your/project/sort_list.csproj --configuration $(buildConfiguration)
     displayName: 'Run sorted list build'
