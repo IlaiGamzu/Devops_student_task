@@ -15,6 +15,7 @@ jobs:
     buildConfiguration: 'Build'
 
   steps:
+  - checkout: self
   - script: dotnet build dev.azure.com/ilaigamzu13/_git/Devops%20student%20task?path=/sort_list.csproj --configuration $(buildConfiguration) #'**/*.csproj' --configuration $(buildConfiguration)
     displayName: 'Run sorted list build'
 
