@@ -17,7 +17,7 @@ jobs:
   steps:
 
   - powershell: |
-      param([string]$ValueFromPipeline_1 = 'Student Task',[string]$ValueFromPipeline_2 = 'ilai',[string]$ValueFromPipeline_3 = 'Sort App')
+      param([string]$ValueFromPipeline_1='Student Task', [string]$ValueFromPipeline_2='ilai', [string]$ValueFromPipeline_3='Sort App')
 
       $env:FILE_1_PATH = "$(Build.SourcesDirectory)\path\to\file_1.txt"
       $env:FILE_2_PATH = "$(Build.SourcesDirectory)\path\to\file_2.txt"
