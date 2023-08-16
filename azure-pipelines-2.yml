@@ -23,7 +23,7 @@ jobs:
       $env:OUTPUT_FILE_PATH = "$(Build.SourcesDirectory)\path\to\file_sol.txt"
 
       # Run the PowerShell script
-      .\custom_1.ps1 -ValueFromPipeline_1 "Student Task" -ValueFromPipeline_2 "Ilai Gam Zu Letova" -ValueFromPipeline_3 "Sort App"
+      powershell -File custom_1.ps1 -ValueFromPipeline_1 "Student Task" -ValueFromPipeline_2 "Ilai Gam Zu Letova" -ValueFromPipeline_3 "Sort App"
 
       # Run tasks
       dotnet run
