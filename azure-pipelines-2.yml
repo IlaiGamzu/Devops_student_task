@@ -15,11 +15,9 @@ jobs:
     buildConfiguration: 'Build'
 
   steps:
-  #- script: dotnet build $(Build.SourcesDirectory)https://dev.azure.com/ilaigamzu13/_git/Devops%20student%20task?path=/DevOps_sol.csproj --configuration $(buildConfiguration)
-  #  displayName: 'Run sorted list build'
-   - script: |
-     cd https://dev.azure.com/ilaigamzu13/_git/Devops%20student%20task?path=/DevOps_sol.csproj  # Navigate to the directory containing your C# code file
-     dotnet build DevOps_sol.csproj --configuration Release
+  - script: dotnet build $(Build.SourcesDirectory)https://dev.azure.com/ilaigamzu13/_git/Devops%20student%20task?path=/DevOps_sol.csproj --configuration $(buildConfiguration)
+    displayName: 'Run sorted list build'
+
 
   - powershell: |
       param(
