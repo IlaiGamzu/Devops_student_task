@@ -18,7 +18,7 @@ jobs:
   #- script: dotnet build 'https://dev.azure.com/ilaigamzu13/_git/Devops%20student%20task?path=/sort_list.csproj&version=GBmaster' --configuration $(buildConfiguration) #'**/*.csproj' --configuration $(buildConfiguration)
     #displayName: 'Run sorted list build'
   steps:
-  -  script: csc sort_list.cs #$(Build.SourcesDirectory)/path/to/your/project/sort_list.csproj --configuration $(buildConfiguration)
+  -  script: csc /out:SortedList.exe $(Build.SourcesDirectory)https://dev.azure.com/ilaigamzu13/sort_list.cs #$(Build.SourcesDirectory)/path/to/your/project/sort_list.csproj --configuration $(buildConfiguration)
      displayName: 'Run sorted list build'
 
   - powershell: |
