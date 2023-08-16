@@ -15,7 +15,7 @@ jobs:
     buildConfiguration: 'Build'
 
   steps:
-  - script: dotnet build $(Build.SourcesDirectory)\sorted_list.cs --configuration $(buildConfiguration)
+  - script: dotnet build $(Build.SourcesDirectory)\sorted_list.csproj --configuration $(buildConfiguration)
     displayName: 'Run sorted list build'
 
   - powershell: |
