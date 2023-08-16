@@ -3,7 +3,7 @@ using System;
 using System.Globalization;
 
 
-namespace Devops_student_task
+//namespace Devops_student_task
 {
     internal class Program
     {
