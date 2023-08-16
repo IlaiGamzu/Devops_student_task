@@ -26,7 +26,8 @@ $pattern_pro = '(\[assembly: AssemblyProduct\("")|(\[assembly: AssemblyCompany\(
 $pattern_ver = '(\[assembly: AssemblyVersion\(")(\d+\.\d+\.\d+\.)(\d+)("\)\])'
 $pattern_ver_file = '(\[assembly: AssemblyFileVersion\(")(\d+\.\d+\.\d+\.)(\d+)("\)\])'
 # Process each line from the file
-$newContent = foreach ($line in $content) {
+#$newContent =
+ foreach ($line in $content) {
     if ($line -match $pattern_des) {
         $newLine_1 = $line -replace $pattern_des, ('[assembly: AssemblyDescription("{0}")]' -f $ValueFromPipeline_1)
         $newLine_1
@@ -59,5 +60,5 @@ $newContent = foreach ($line in $content) {
 }
 
 # Save the modified content back to AssemblyInfo.cs
-$newContent | Set-Content -Path $assemblyInfoPath
+#$newContent | Set-Content -Path $assemblyInfoPath
 
