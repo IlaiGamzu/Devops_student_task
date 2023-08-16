@@ -13,22 +13,17 @@ jobs:
 
   variables:
     buildConfiguration: 'Build'
-    $Description= "Student Task"
+    
 
   steps:
   - powershell: |
-      param(
-        [string]$ValueFromPipeline_1 = $Description,
-        [string]$ValueFromPipeline_2 = "ilai",
-        [string]$ValueFromPipeline_3 = "Sort App"
-      )
 
       $env:FILE_1_PATH = "$(Build.SourcesDirectory)\path\to\file_1.txt"
       $env:FILE_2_PATH = "$(Build.SourcesDirectory)\path\to\file_2.txt"
       $env:OUTPUT_FILE_PATH = "$(Build.SourcesDirectory)\path\to\file_sol.txt"
 
       # Run the PowerShell script
-      .\custom_1.ps1 -ValueFromPipeline_1 $ValueFromPipeline_1 -ValueFromPipeline_2 $ValueFromPipeline_2 -ValueFromPipeline_3 $ValueFromPipeline_3
+      .\custom_1.ps1 -ValueFromPipeline_1 "Student Task" -ValueFromPipeline_2 "Ilai Gam Zu Letova" -ValueFromPipeline_3 "Sort App"
 
       # Run tasks
       dotnet run
