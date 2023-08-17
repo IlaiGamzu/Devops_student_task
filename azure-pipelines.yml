@@ -18,6 +18,8 @@ jobs:
           $env:OUTPUT_FILE_PATH = "$(Build.SourcesDirectory)\file_sol.txt"
           
           $env:X = "$(Build.SourcesDirectory)\num_of_version.txt"
+          $newVersion = "1.0.0.$($X + 1)"
+          Set-Content "$(Build.SourcesDirectory)\num_of_version.txt" $newVersion
       - task: Assembly-Info-NetCore@3
         inputs:
           Path: '$(Build.SourcesDirectory)'
@@ -28,8 +30,8 @@ jobs:
           Company: 'Ilai Gam Zu Letova'
           Product: 'Sort App'
           Description: 'Student task'
-          VersionNumber: "1.0.0.$(X)" 
-          FileVersionNumber: "1.0.0.$(X)"
+          VersionNumber: "$(newVersion)"  
+          FileVersionNumber: "$(newVersion)" 
           LogLevel: 'verbose'
           FailOnWarning: false
           DisableTelemetry: false
