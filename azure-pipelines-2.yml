@@ -27,6 +27,8 @@ jobs:
           Company: 'Ilai Gam Zu Letova'
           Product: 'Sort App'
           Description: 'Student task'
+          VersionNumber: '1.0.0.0'
+          FileVersionNumber: '1.0.0.0'
           LogLevel: 'verbose'
           FailOnWarning: false
           DisableTelemetry: false
