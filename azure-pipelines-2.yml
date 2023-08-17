@@ -19,7 +19,7 @@ jobs:
       - task: Assembly-Info-NetCore@3
         inputs:
           Path: '$(Build.SourcesDirectory)'
-          FileNames: '**/*.csproj, custom_1.ps1, Assembly_info.cs'
+          FileNames: '**/*.csproj'
           InsertAttributes: true
           FileEncoding: 'auto'
           WriteBOM: false
