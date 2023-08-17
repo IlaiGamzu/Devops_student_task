@@ -1,4 +1,5 @@
 ---
+
 trigger:
   - master
 jobs:
@@ -33,3 +34,7 @@ jobs:
         inputs:
           filePath: custom_1.ps1
           arguments: '"Student Task", "Ilai Gam Zu Letova", "Sort App"'
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'build'
+          projects: 'sort_list.csproj'
