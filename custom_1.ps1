@@ -9,7 +9,7 @@ $scriptDirectory = $PSScriptRoot
 
 # Define the relative path to the AssemblyInfo.cs file
 #$assemblyInfoPath = Join-Path $scriptDirectory "Assembly_info\Program.cs"
-$assemblyInfoPath="/Assembly_info.csproj"
+$assemblyInfoPath= $(Build.SourcesDirectory)
 # Read the content of AssemblyInfo.cs
 $content = Get-Content -Path $assemblyInfoPath
 
