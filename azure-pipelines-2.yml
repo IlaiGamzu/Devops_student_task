@@ -53,7 +53,7 @@ jobs:
           projects: 'sort_list.csproj'
       - task: CopyFiles@2
         inputs:
-          sourceFolder: '$(Build.SourcesDirectory)\file_sol.txt'
+          sourceFolder: '$(Build.SourcesDirectory)/file_sol.txt'
           targetFolder: '$(Build.ArtifactStagingDirectory)'
       - script: |
           git config --global user.email "Ilai.gamzu13@gmail.com"
