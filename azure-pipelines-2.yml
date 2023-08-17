@@ -53,16 +53,15 @@ jobs:
           projects: 'sort_list.csproj'
       - task: CopyFiles@2
         inputs:
-          sourceFolder: '$(Build.SourcesDirectory)/file_sol.txt'
+          sourceFolder: '$(Build.SourcesDirectory)\file_sol.txt'
           targetFolder: '$(Build.ArtifactStagingDirectory)'
       - script: |
           git config --global user.email "Ilai.gamzu13@gmail.com"
           git config --global user.name "ilaigamzu13"
-          git add $(Build.SourcesDirectory)/file_sol.txt
-          git commit -m "Updating version and other attributes"
-          git commit -m "Update file num_of_version"
+          git add $(Build.SourcesDirectory)\file_sol.txt
           git add $(Build.SourcesDirectory)\num_of_version.txt
-          git push -m 
+          git commit -m "Updating version and other attributes and num_of_version.txt "
+          git push origin HEAD:refs/heads/master 
           
           displayName: 'Commit and Push Changes'
           condition: succeeded()
