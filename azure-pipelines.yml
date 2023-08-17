@@ -16,22 +16,28 @@ jobs:
           $env:FILE_2_PATH = "$(Build.SourcesDirectory)\path\to\file_2.txt"
 
           $env:OUTPUT_FILE_PATH = "$(Build.SourcesDirectory)\path\to\file_sol.txt"
-      - task: Assembly-Info-NetCore@3
-        inputs:
-          Path: '$(Build.SourcesDirectory)'
-          FileNames: '**/Assembly_info.cs'
-          InsertAttributes: true
-          FileEncoding: 'auto'
-          WriteBOM: false
-          Company: 'Ilai Gam Zu Letova'
-          Product: 'Sort App'
-          Description: 'Student Task'
-          LogLevel: 'verbose'
-          FailOnWarning: false
-          DisableTelemetry: false
+
       - task: PowerShell@2
         inputs:
           filePath: 'custom.ps1'
+          arguments: '"Student Task", "Ilai Gam Zu Letova", "Sort App"'
+      - task: Assembly-Info-NetCore@3
+        displayName: 'Update Assembly Info Attributes'
+        inputs:
+          Path: '$(Build.SourcesDirectory)'
+          FileNames: '**/*.csproj'
+          InsertAttributes: true
+          FileEncoding: 'auto'
+          WriteBOM: false
+          Company: $(AssemblyInfo.Company)
+          Product: $(AssemblyInfo.Product)
+          Description: $(AssemblyInfo.Description)
+          VersionNumber: $(AssemblyInfo.VersionNumber)
+          FileVersionNumber: $(AssemblyInfo.FileVersionNumber)
+          LogLevel: 'verbose'
+          FailOnWarning: false
+          DisableTelemetry: false
+
       - task: DotNetCoreCLI@2
         inputs:
           command: 'build'
