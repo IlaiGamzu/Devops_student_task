@@ -9,6 +9,8 @@ jobs:
     variables:
       buildConfiguration: Build
     steps:
+    - checkout: self
+      clean: true
       - powershell: >
           
           $env:FILE_1_PATH = "$(Build.SourcesDirectory)\file_1.txt"
