@@ -27,15 +27,15 @@ jobs:
           Company: 'Ilai Gam Zu Letova'
           Product: 'Sort App'
           Description: 'Student task'
-          VersionNumber: '1.0.0.0' 
-          FileVersionNumber: '1.0.0.0'
+          VersionNumber: '1.0.0.x' 
+          FileVersionNumber: '1.0.0.x'
           LogLevel: 'verbose'
           FailOnWarning: false
           DisableTelemetry: false
       - task: PowerShell@2
         inputs:
           filePath: custom_1.ps1
-          arguments: '"Student Task", "Ilai Gam Zu Letova", "Sort App"'
+          arguments:
       - task: DotNetCoreCLI@2
         inputs:
           command: 'build'
