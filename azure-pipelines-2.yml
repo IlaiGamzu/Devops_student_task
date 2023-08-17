@@ -1,7 +1,6 @@
----
-
 trigger:
   - master
+
 jobs:
   - job: run_custom_task
     pool:
@@ -9,24 +8,20 @@ jobs:
     variables:
       buildConfiguration: Build
     steps:
-      - powershell: >
-          
-          $env:FILE_1_PATH = "$(Build.SourcesDirectory)\path\to\file_1.txt"
-
-          $env:FILE_2_PATH = "$(Build.SourcesDirectory)\path\to\file_2.txt"
-
-          $env:OUTPUT_FILE_PATH = "$(Build.SourcesDirectory)\path\to\file_sol.txt"
-
+      - powershell: |
+          $env:ValueFromPipeline_1 = "Student Task"
+          $env:ValueFromPipeline_2 = "Ilai Gam Zu Letova"
+          $env:ValueFromPipeline_3 = "Sort App"
       - task: Assembly-Info-NetCore@3
         inputs:
           Path: '$(Build.SourcesDirectory)'
-          FileNames: '**/*.csproj'
+          FileNames: '**/AssemblyInfo.*.cs'
           InsertAttributes: true
           FileEncoding: 'auto'
           WriteBOM: false
-          Company: 'Ilai Gam Zu Letova'
-          Product: 'Sort App'
-          Description: 'Student task'
+          Company: $(ValueFromPipeline_2)
+          Product: $(ValueFromPipeline_3)
+          Description: $(ValueFromPipeline_1)
           VersionNumber: '1.0.0.0'
           FileVersionNumber: '1.0.0.0'
           LogLevel: 'verbose'
@@ -35,8 +30,7 @@ jobs:
       - task: PowerShell@2
         inputs:
           filePath: custom_1.ps1
-          arguments: '"Student Task", "Ilai Gam Zu Letova", "Sort App"'
       - task: DotNetCoreCLI@2
         inputs:
           command: 'build'
-          projects: 'sort_list.csproj'
+          projects: '**/*.csproj'
