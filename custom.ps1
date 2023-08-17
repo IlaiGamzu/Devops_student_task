@@ -2,7 +2,7 @@
 #$assemblyInfoPath = "C:\C#_PROGRAM\Devops student task IAI\custom_student_task\copy_project_of_assemblyinfo.cs"
 #$assemblyInfoPath = "C:\C#_PROGRAM\Devops student task IAI\custom_student_task\Assembly_info\Program.cs"
 # Read the content of AssemblyInfo.cs
-assemblyInfoPath ='$(Build.SourcesDirectory)/Assembly_info'
+$assemblyInfoPath ='$(Build.SourcesDirectory)/Assembly_info'
 $content = Get-Content -Path $assemblyInfoPath
 
 # Value to replace with from pipeline
