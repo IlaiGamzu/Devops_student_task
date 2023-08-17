@@ -20,7 +20,7 @@ jobs:
       - task: Assembly-Info-NetCore@3
         inputs:
           Path: '$(Build.SourcesDirectory)'
-          FileNames: '**/AssemblyInfo.cs'
+          FileNames: '**/Assembly_info.cs'
           InsertAttributes: true
       - task: PowerShell@2
         inputs:
