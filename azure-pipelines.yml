@@ -20,6 +20,8 @@ jobs:
           $env:X = "$(Build.SourcesDirectory)\num_of_version.txt"
           
           $Version = "1.0.0.$X"
+          $newContent = $content -notmatch $env:X
+          $newContent | Set-Content -Path "$(Build.SourcesDirectory)\num_of_version.txt"
           #$newVersion | Set-Content "$(Build.SourcesDirectory)\num_of_version.txt"
       - task: Assembly-Info-NetCore@3
         inputs:
