@@ -17,7 +17,11 @@ jobs:
 
           $env:OUTPUT_FILE_PATH = "$(Build.SourcesDirectory)\path\to\file_sol.txt"
 
-
+      - task: Assembly-Info-NetCore@3
+        inputs:
+          Path: '$(Build.SourcesDirectory)'
+          FileNames: '**/AssemblyInfo.cs'
+          InsertAttributes: true
       - task: PowerShell@2
         inputs:
           filePath: 'custom.ps1'
