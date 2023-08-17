@@ -56,8 +56,8 @@ jobs:
           sourceFolder: '$(Build.SourcesDirectory)/file_sol.txt'
           targetFolder: '$(Build.ArtifactStagingDirectory)'
       - script: |
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
+          git config --global user.email "Ilai.gamzu13@gmail.com"
+          git config --global user.name "ilaigamzu13"
           git add $(Build.SourcesDirectory)/file_sol.txt
           git commit -m "Updating version and other attributes"
           git commit -m "Update file num_of_version"
