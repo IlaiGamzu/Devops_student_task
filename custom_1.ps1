@@ -66,7 +66,7 @@ foreach ($directory in $directories) {
     }
 }
     }
-}
+
    
 
 # Save the modified content back to AssemblyInfo.cs
