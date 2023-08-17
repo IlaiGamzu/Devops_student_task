@@ -47,8 +47,6 @@ jobs:
       - task: PublishBuildArtifacts@1
         inputs:
           pathToPublish: '$(Build.ArtifactStagingDirectory)'
-      - task: PublishBuildArtifacts@1
-        inputs:
-          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
           ArtifactName: 'Sort list'
-          publishLocation: 'Container'
+
+     
