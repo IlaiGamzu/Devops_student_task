@@ -47,14 +47,14 @@ foreach ($directory in $directories) {
          $file -replace $pattern_pro, ('[assembly: AssemblyCompany("{0}")]' -f $ValueFromPipeline_3)
         
     }
-    elseif($$file -match $pattern_ver){
+    elseif($file -match $pattern_ver){
         $majorMinorBuild = $matches[2]
         $lastDigit = [int]$matches[3] + 1
         $newVersion = "${majorMinorBuild}$lastDigit"
         $file-replace $pattern_ver, ('[assembly: AssemblyVersion("{0}")]' -f $newVersion)
         
     }
-    elseif($line -match $pattern_ver_file){
+    elseif($file -match $pattern_ver_file){
         $majorMinorBuild = $matches[2]
         $lastDigit = [int]$matches[3] + 1
         $newVersion = "${majorMinorBuild}$lastDigit"
