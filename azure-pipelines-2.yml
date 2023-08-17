@@ -63,6 +63,7 @@ jobs:
           script: |
                 git config --global user.email "Ilai.gamzu13@gmail.com"
                 git config --global user.name "ilaigamzu13"
+                git remote set-url origin $(Build.Repository.Uri)
                 git add $(Build.SourcesDirectory)\file_sol.txt
                 git add $(Build.SourcesDirectory)\num_of_version.txt
                 git commit -m "Updating version and other attributes and num_of_version.txt "
