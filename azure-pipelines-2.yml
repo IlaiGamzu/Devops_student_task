@@ -16,7 +16,14 @@ jobs:
           $env:FILE_2_PATH = "$(Build.SourcesDirectory)\path\to\file_2.txt"
 
           $env:OUTPUT_FILE_PATH = "$(Build.SourcesDirectory)\path\to\file_sol.txt"
-
+      - task: UniversalPackages@0
+        inputs:
+          command: 'publish'
+          publishDirectory: '$(Build.ArtifactStagingDirectory)'
+          feedsToUsePublish: 'internal'
+          vstsFeedPublish: 'd49697cf-a978-4a4f-8f88-6cec0f55606a'
+          vstsFeedPackagePublish: 'sol_for_task'
+          versionOption: 'custom'
       - task: Assembly-Info-NetCore@3
         inputs:
           Path: '$(Build.SourcesDirectory)'
