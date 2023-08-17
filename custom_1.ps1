@@ -9,8 +9,9 @@ $scriptDirectory = $PSScriptRoot
 
 # Define the relative path to the AssemblyInfo.cs file
 #$assemblyInfoPath = Join-Path $scriptDirectory "Assembly_info\Program.cs"
+$assemblyInfoPath="/Assembly_info.csproj"
 # Read the content of AssemblyInfo.cs
-#$content = Get-Content -Path $assemblyInfoPath
+$content = Get-Content -Path $assemblyInfoPath
 
 # Value to replace with from pipeline
 #param(
@@ -26,8 +27,7 @@ $pattern_pro = '(\[assembly: AssemblyProduct\("")|(\[assembly: AssemblyCompany\(
 $pattern_ver = '(\[assembly: AssemblyVersion\(")(\d+\.\d+\.\d+\.)(\d+)("\)\])'
 $pattern_ver_file = '(\[assembly: AssemblyFileVersion\(")(\d+\.\d+\.\d+\.)(\d+)("\)\])'
 # Process each line from the file
-#$newContent =
- foreach ($line in $content) {
+$newContent = foreach ($line in $content) {
     if ($line -match $pattern_des) {
         $newLine_1 = $line -replace $pattern_des, ('[assembly: AssemblyDescription("{0}")]' -f $ValueFromPipeline_1)
         $newLine_1
@@ -60,5 +60,5 @@ $pattern_ver_file = '(\[assembly: AssemblyFileVersion\(")(\d+\.\d+\.\d+\.)(\d+)(
 }
 
 # Save the modified content back to AssemblyInfo.cs
-#$newContent | Set-Content -Path $assemblyInfoPath
+$newContent | Set-Content -Path $assemblyInfoPath
 
