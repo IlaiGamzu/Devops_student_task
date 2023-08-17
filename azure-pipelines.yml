@@ -11,12 +11,13 @@ jobs:
     steps:
       - powershell: >
           
-          $env:FILE_1_PATH = "$(Build.SourcesDirectory)\path\to\file_1.txt"
+          $env:FILE_1_PATH = "$(Build.SourcesDirectory)\file_1.txt"
 
-          $env:FILE_2_PATH = "$(Build.SourcesDirectory)\path\to\file_2.txt"
+          $env:FILE_2_PATH = "$(Build.SourcesDirectory)\file_2.txt"
 
-          $env:OUTPUT_FILE_PATH = "$(Build.SourcesDirectory)\path\to\file_sol.txt"
-
+          $env:OUTPUT_FILE_PATH = "$(Build.SourcesDirectory)\file_sol.txt"
+          
+          $X= "$(Build.SourcesDirectory)\num_of_version.txt"
       - task: Assembly-Info-NetCore@3
         inputs:
           Path: '$(Build.SourcesDirectory)'
@@ -27,8 +28,8 @@ jobs:
           Company: 'Ilai Gam Zu Letova'
           Product: 'Sort App'
           Description: 'Student task'
-          VersionNumber: '1.0.0.0' 
-          FileVersionNumber: '1.0.0.0'
+          VersionNumber: '1.0.0.$X' 
+          FileVersionNumber: '1.0.0.$X'
           LogLevel: 'verbose'
           FailOnWarning: false
           DisableTelemetry: false
