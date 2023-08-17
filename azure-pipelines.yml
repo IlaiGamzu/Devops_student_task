@@ -21,6 +21,7 @@ jobs:
         inputs:
           filePath: 'custom.ps1'
           arguments: '"Student Task", "Ilai Gam Zu Letova", "Sort App"'
+          pwsh: true
       - task: Assembly-Info-NetCore@3
         displayName: 'Update Assembly Info Attributes'
         inputs:
