@@ -66,6 +66,9 @@ jobs:
           
           displayName: 'Commit and Push Changes'
           condition: succeeded()
+          
+          displayName: 'Commit and Push Changes'
+          condition: succeeded()
       - task: PublishBuildArtifacts@1
         inputs:
           pathToPublish: '$(Build.ArtifactStagingDirectory)'
