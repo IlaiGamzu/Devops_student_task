@@ -1,29 +1,16 @@
 ---
+
 trigger:
-  - main
-pool:
-  vmImage: windows-latest
+  - master
 jobs:
-  - job: Build
+  - job: run_custom_task
+    pool:   
+      vmImage: ubuntu-latest
+    variables:
+      buildConfiguration: Build
     steps:
-      - task: UseDotNet@2
-        inputs:
-          packageType: sdk
-          installationPath: $(Agent.ToolsDirectory)/dotnet
-          version: 3.1.x
-        displayName: Install .NET SDK
-      - script: >
-          dotnet build $(Build.SourcesDirectory)\Program.csproj --configuration
-          Release
-        displayName: Build C# project
       - powershell: >
-          param(
-            [string]$ValueFromPipeline_1 = "Student Task",
-            [string]$ValueFromPipeline_2 = "ilai",
-            [string]$ValueFromPipeline_3 = "Sort App"
-          )
-
-
+          
           $env:FILE_1_PATH = "$(Build.SourcesDirectory)\path\to\file_1.txt"
 
           $env:FILE_2_PATH = "$(Build.SourcesDirectory)\path\to\file_2.txt"
@@ -31,12 +18,21 @@ jobs:
           $env:OUTPUT_FILE_PATH = "$(Build.SourcesDirectory)\path\to\file_sol.txt"
 
 
-          # Run your .NET program or any other tasks
+      - task: PowerShell@2
+        inputs:
+          filePath: custom_1.ps1
+          arguments: '"Student Task", "Ilai Gam Zu Letova", "Sort App"'
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'build'
+          projects: 'sort_list.csproj'
+      - task: CopyFiles@2
+        inputs:
+          sourceFolder: '$(Build.SourcesDirectory)/file_sol.txt'
+          targetFolder: '$(Build.ArtifactStagingDirectory)'
+      - task: PublishBuildArtifacts@1
+        inputs:
+          pathToPublish: '$(Build.ArtifactStagingDirectory)'
+          ArtifactName: 'Sort list'
 
-          dotnet run
-
-
-          # Run the PowerShell script
-
-          .\custom_1.ps1 -ValueFromPipeline_1 $ValueFromPipeline_1 -ValueFromPipeline_2 $ValueFromPipeline_2 -ValueFromPipeline_3 $ValueFromPipeline_3
-        displayName: Run PowerShell script
+     
