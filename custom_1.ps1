@@ -35,31 +35,40 @@ foreach ($directory in $directories) {
     $assemblyInfoFiles = Get-ChildItem -Path $directory.FullName -Recurse -Include AssemblyInfo.*
     foreach ($file in $assemblyInfoFiles) {
         # Perform operations on each assembly info file
+
     if ($file -match $pattern_des) {
-         $file -replace $pattern_des, ('[assembly: AssemblyDescription("{0}")]' -f $ValueFromPipeline_1)
+        $content = Get-Content -Path $file.FullName
+        $newContent = $content -replace $pattern_des, ('[assembly: AssemblyDescription("{0}")]' -f $ValueFromPipeline_1)
+        $newContent | Set-Content -Path $file.FullName
+        }
         
     }
     elseif ($file -match $pattern_com) {
-        $file -replace $pattern_com, ('[assembly: AssemblyCompany("{0}")]' -f $ValueFromPipeline_2)
+        $content = Get-Content -Path $file.FullName
+        $newContent = $content -replace $pattern_com, ('[assembly: AssemblyCompany("{0}")]' -f $ValueFromPipeline_2)
+        $newContent | Set-Content -Path $file.FullName
         
     }
     elseif ($file -match $pattern_pro) {
-         $file -replace $pattern_pro, ('[assembly: AssemblyCompany("{0}")]' -f $ValueFromPipeline_3)
-        
+         $content = Get-Content -Path $file.FullName
+         $newContent = $content -replace $pattern_pro, ('[assembly: AssemblyCompany("{0}")]' -f $ValueFromPipeline_3)
+         $newContent | Set-Content -Path $file.FullName
     }
     elseif($file -match $pattern_ver){
+        $content = Get-Content -Path $file.FullName
         $majorMinorBuild = $matches[2]
         $lastDigit = [int]$matches[3] + 1
         $newVersion = "${majorMinorBuild}$lastDigit"
-        $file-replace $pattern_ver, ('[assembly: AssemblyVersion("{0}")]' -f $newVersion)
-        
+        $newContent = $content -replace $pattern_ver, ('[assembly: AssemblyVersion("{0}")]' -f $newVersion)
+        $newContent | Set-Content -Path $file.FullName
     }
     elseif($file -match $pattern_ver_file){
+        $content = Get-Content -Path $file.FullName
         $majorMinorBuild = $matches[2]
         $lastDigit = [int]$matches[3] + 1
         $newVersion = "${majorMinorBuild}$lastDigit"
-        $file -replace $pattern_ver_file, ('[assembly: AssemblyFileVersion("{0}")]' -f $newVersion)
-        
+        $newContent = $content -replace $pattern_ver_file, ('[assembly: AssemblyFileVersion("{0}")]' -f $newVersion)
+        $newContent | Set-Content -Path $file.FullName
     }
     else {
         $file
