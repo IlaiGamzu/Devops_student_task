@@ -6,11 +6,11 @@ $assemblyInfoPath = Join-Path $PSScriptRoot "Assembly_info.cs"
 $content = Get-Content -Path $assemblyInfoPath
 
 # Value to replace with from pipeline
-param(
-    [string]$ValueFromPipeline_1,
-    [string]$ValueFromPipeline_2,
-    [string]$ValueFromPipeline_3
-)
+#param(
+#    [string]$ValueFromPipeline_1,
+#    [string]$ValueFromPipeline_2,
+#    [string]$ValueFromPipeline_3
+#)
 
 # Define regex patterns to match AssemblyDescription and AssemblyCompany attributes
 $pattern_des = '(\[assembly: AssemblyDescription\("")|(\[assembly: AssemblyDescription\(")([^"]*)("\)\])'
