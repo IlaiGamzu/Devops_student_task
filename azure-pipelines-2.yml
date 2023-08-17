@@ -19,14 +19,16 @@ jobs:
       - task: Assembly-Info-NetCore@3
         inputs:
           Path: '$(Build.SourcesDirectory)'
-          FileNames: 'Assembly_info.csproj'
-          InsertAttributes: false
+          FileNames: '**/*.csproj'
+          InsertAttributes: true
           FileEncoding: 'auto'
           WriteBOM: false
+          Company: 'Ilai Gam Zu Letova'
+          Product: 'Sort App'
+          Description: 'Student task'
           LogLevel: 'verbose'
           FailOnWarning: false
           DisableTelemetry: false
-          # Run the PowerShell script dotnet run
       - task: PowerShell@2
         inputs:
           filePath: custom_1.ps1
