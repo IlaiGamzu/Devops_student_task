@@ -55,6 +55,23 @@ jobs:
         inputs:
           sourceFolder: '$(Build.SourcesDirectory)/file_sol.txt'
           targetFolder: '$(Build.ArtifactStagingDirectory)'
+      - script: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
+          git add $(Build.SourcesDirectory)/file_sol.txt
+          git commit -m "Updating version and other attributes"
+          git commit -m "Update file num_of_version"
+          git add $(Build.SourcesDirectory)\num_of_version.txt
+          git push -m 
+          
+          displayName: 'Commit and Push Changes'
+          condition: succeeded()
+
+
+
+
+
+
       - task: PublishBuildArtifacts@1
         inputs:
           pathToPublish: '$(Build.ArtifactStagingDirectory)'
