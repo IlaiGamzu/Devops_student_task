@@ -27,8 +27,8 @@ jobs:
           Company: 'Ilai Gam Zu Letova'
           Product: 'Sort App'
           Description: 'Student task'
-          VersionNumber: $(Build.BuildNumber.Replace(".", "-")) 
-          FileVersionNumber: $(Build.BuildNumber.Replace(".", "-")) 
+          VersionNumber: '1.0.0.0' 
+          FileVersionNumber: '1.0.0.0'
           LogLevel: 'verbose'
           FailOnWarning: false
           DisableTelemetry: false
@@ -40,3 +40,15 @@ jobs:
         inputs:
           command: 'build'
           projects: 'sort_list.csproj'
+      - task: CopyFiles@2
+        inputs:
+          sourceFolder: '$(Build.SourcesDirectory)/file_sol.txt'
+          targetFolder: '$(Build.ArtifactStagingDirectory)'
+      - task: PublishBuildArtifacts@1
+        inputs:
+          pathToPublish: '$(Build.ArtifactStagingDirectory)'
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          ArtifactName: 'Sort list'
+          publishLocation: 'Container'
