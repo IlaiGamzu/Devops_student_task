@@ -4,7 +4,7 @@ trigger:
   - master
 jobs:
   - job: run_custom_task
-    pool:
+    pool:   
       vmImage: ubuntu-latest
     variables:
       buildConfiguration: Build
