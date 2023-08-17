@@ -9,9 +9,9 @@ $scriptDirectory = $PSScriptRoot
 
 # Define the relative path to the AssemblyInfo.cs file
 #$assemblyInfoPath = Join-Path $scriptDirectory "Assembly_info\Program.cs"
-$assemblyInfoPath= $(Build.SourcesDirectory)
+#$assemblyInfoPath= $(Build.SourcesDirectory)
 # Read the content of AssemblyInfo.cs
-$content = Get-Content -Path $assemblyInfoPath
+#$content = Get-Content -Path $assemblyInfoPath
 
 # Value to replace with from pipeline
 #param(
@@ -27,38 +27,48 @@ $pattern_pro = '(\[assembly: AssemblyProduct\("")|(\[assembly: AssemblyCompany\(
 $pattern_ver = '(\[assembly: AssemblyVersion\(")(\d+\.\d+\.\d+\.)(\d+)("\)\])'
 $pattern_ver_file = '(\[assembly: AssemblyFileVersion\(")(\d+\.\d+\.\d+\.)(\d+)("\)\])'
 # Process each line from the file
-$newContent = foreach ($line in $content) {
-    if ($line -match $pattern_des) {
-        $newLine_1 = $line -replace $pattern_des, ('[assembly: AssemblyDescription("{0}")]' -f $ValueFromPipeline_1)
-        $newLine_1
+#$newContent = 
+#foreach ($line in $content) {
+$directories = Get-ChildItem -Directory
+
+foreach ($directory in $directories) {
+    $assemblyInfoFiles = Get-ChildItem -Path $directory.FullName -Recurse -Include AssemblyInfo.*
+    foreach ($file in $assemblyInfoFiles) {
+        # Perform operations on each assembly info file
+    if ($file -match $pattern_des) {
+         $file -replace $pattern_des, ('[assembly: AssemblyDescription("{0}")]' -f $ValueFromPipeline_1)
+        
     }
-    elseif ($line -match $pattern_com) {
-        $newLine_2 = $line -replace $pattern_com, ('[assembly: AssemblyCompany("{0}")]' -f $ValueFromPipeline_2)
-        $newLine_2
+    elseif ($file -match $pattern_com) {
+        $file -replace $pattern_com, ('[assembly: AssemblyCompany("{0}")]' -f $ValueFromPipeline_2)
+        
     }
-    elseif ($line -match $pattern_pro) {
-        $newLine_2 = $line -replace $pattern_pro, ('[assembly: AssemblyCompany("{0}")]' -f $ValueFromPipeline_3)
-        $newLine_2
+    elseif ($file -match $pattern_pro) {
+         $file -replace $pattern_pro, ('[assembly: AssemblyCompany("{0}")]' -f $ValueFromPipeline_3)
+        
     }
-    elseif($line -match $pattern_ver){
+    elseif($$file -match $pattern_ver){
         $majorMinorBuild = $matches[2]
         $lastDigit = [int]$matches[3] + 1
         $newVersion = "${majorMinorBuild}$lastDigit"
-        $newLine = $line -replace $pattern_ver, ('[assembly: AssemblyVersion("{0}")]' -f $newVersion)
-        $newLine
+        $file-replace $pattern_ver, ('[assembly: AssemblyVersion("{0}")]' -f $newVersion)
+        
     }
     elseif($line -match $pattern_ver_file){
         $majorMinorBuild = $matches[2]
         $lastDigit = [int]$matches[3] + 1
         $newVersion = "${majorMinorBuild}$lastDigit"
-        $newLine = $line -replace $pattern_ver_file, ('[assembly: AssemblyFileVersion("{0}")]' -f $newVersion)
-        $newLine
+        $file -replace $pattern_ver_file, ('[assembly: AssemblyFileVersion("{0}")]' -f $newVersion)
+        
     }
     else {
-        $line
+        $file
     }
 }
+    }
+}
+   
 
 # Save the modified content back to AssemblyInfo.cs
-$newContent | Set-Content -Path $assemblyInfoPath
+#$newContent | Set-Content -Path $assemblyInfoPath
 
