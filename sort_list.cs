@@ -40,7 +40,7 @@ namespace sort_list
      * Input: ArrayList and array in type string
      * Output: Will add to ArrayList the words from files
      */
-    public static void add_to_array_list(ArrayList save_file, string[] str_file_1)
+    private static void add_to_array_list(ArrayList save_file, string[] str_file_1)
     {
         foreach (string word in str_file_1)
         {
@@ -51,7 +51,7 @@ namespace sort_list
     /*
      *Method that print ArrayList
      */
-    public static void print_array_list(ArrayList save_file)
+    private static void print_array_list(ArrayList save_file)
     {
         Console.WriteLine("ArrayList: save_file");
         foreach (var value in save_file)
@@ -67,7 +67,7 @@ namespace sort_list
      *         else- print error and exit.
      * Note: the method ReadAllText open the file, read and close the file.
      */
-    public static string file_option(string path)
+    private static string file_option(string path)
     {
         if (!File.Exists(path))
         {
@@ -86,7 +86,7 @@ namespace sort_list
      *  Output: if the file is exists, then content of arraylist copy to output_file.
      *          else- print error and exit.
      */
-    public static void insert_arrraylist_to_file(ArrayList save_file, string path)
+    private static void insert_arrraylist_to_file(ArrayList save_file, string path)
     {
         if (!File.Exists(path))
         {
@@ -102,7 +102,7 @@ namespace sort_list
      * Input: path of file
      * Output: print the content of file
      */
-    public static void print_file(string path)
+    private static void print_file(string path)
     {
         string from_output_file = file_option(path);
         Console.WriteLine("File content is :\n" + from_output_file);
