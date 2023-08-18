@@ -27,7 +27,7 @@ jobs:
           $newValueAsString = $newValue.ToString()
 
           # Update the file with the new value
-          $newValueAsString | Set-Content -Path "$(Build.SourcesDirectory)\num_of_version.txt"
+           Set-Content -Path "$(Build.SourcesDirectory)\num_of_version.txt" -value $newValueAsString
           #$newVersion | Set-Content "$(Build.SourcesDirectory)\num_of_version.txt"
       - task: Assembly-Info-NetCore@3
         inputs:
