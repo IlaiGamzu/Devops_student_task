@@ -1,5 +1,3 @@
----
-
 trigger:
   - master
 jobs:
@@ -9,24 +7,15 @@ jobs:
     variables:
       buildConfiguration: Build
     steps:
-      - powershell: >
-          
-          $env:FILE_1_PATH = "$(Build.SourcesDirectory)\file_1.txt"
-
-          $env:FILE_2_PATH = "$(Build.SourcesDirectory)\file_2.txt"
-
-          $env:OUTPUT_FILE_PATH = "$(Build.SourcesDirectory)\file_sol.txt"
-          
-          $env:X = "$(Build.SourcesDirectory)\num_of_version.txt"
-          
+      - powershell: |
+          $env:X = Get-Content -Path "$(Build.SourcesDirectory)\num_of_version.txt"
           $Version = "1.0.0.$X"
-          # Convert the current value to an integer, increment it, and convert it back to a string
-          $newValue = [int]$currentValue + 1
+          $newValue = [int]$X + 1
           $newValueAsString = $newValue.ToString()
 
-          # Update the file with the new value
-          $newValueAsString | Set-Content -Path "$(Build.SourcesDirectory)\num_of_version.txt"
-          #$newVersion | Set-Content "$(Build.SourcesDirectory)\num_of_version.txt"
+          Set-Content -Path "$(Build.SourcesDirectory)\num_of_version.txt" -value $newValueAsString
+        displayName: 'Update num_of_version.txt'
+        
       - task: Assembly-Info-NetCore@3
         inputs:
           Path: '$(Build.SourcesDirectory)'
@@ -47,17 +36,18 @@ jobs:
         inputs:
           filePath: 'custom_1.ps1'
           arguments: '"Student Task", "Ilai Gam Zu Letova", "Sort App"'
+
       - task: DotNetCoreCLI@2
         inputs:
           command: 'build'
           projects: 'sort_list.csproj'
-      - task: CopyFiles@2
-        inputs:
-          sourceFolder: '$(Build.SourcesDirectory)/file_sol.txt'
-          targetFolder: '$(Build.ArtifactStagingDirectory)'
+
+      - powershell: |
+          Copy-Item -Path "$(Build.SourcesDirectory)/file_sol.txt" -Destination "$(Build.ArtifactStagingDirectory)" -Force
+          Copy-Item -Path "$(Build.SourcesDirectory)/num_of_version.txt" -Destination "$(Build.SourcesDirectory)" -Force
+        displayName: 'Copy files'
+
       - task: PublishBuildArtifacts@1
         inputs:
           pathToPublish: '$(Build.ArtifactStagingDirectory)'
           ArtifactName: 'Sort list'
-
-     
