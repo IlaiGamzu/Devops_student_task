@@ -55,8 +55,12 @@ jobs:
           projects: 'sort_list.csproj'
       - task: CopyFiles@2
         inputs:
-          sourceFolder: '$(Build.SourcesDirectory)\file_sol.txt'
+          sourceFolder: '$(Build.SourcesDirectory)/file_sol.txt'
           targetFolder: '$(Build.ArtifactStagingDirectory)'
+      - task: CopyFiles@2
+        inputs:
+          Contents: '$newValueAsString'
+          TargetFolder: '$(Build.SourcesDirectory)/num_of_version.txt'
       - task: PublishBuildArtifacts@1
         inputs:
           pathToPublish: '$(Build.ArtifactStagingDirectory)'
