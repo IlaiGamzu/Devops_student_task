@@ -45,6 +45,7 @@ jobs:
       - powershell: |
           $newValue = Get-Content -Path "$(Build.SourcesDirectory)\num_of_version.txt" | Foreach-Object { [int]$_ + 1 }
           $newValueAsString = $newValue.ToString()
+          echo $newValueAsString
           Set-Content -Path "$(Build.SourcesDirectory)\num_of_version.txt" -Value $newValueAsString
         displayName: 'Update num_of_version.txt'
         
