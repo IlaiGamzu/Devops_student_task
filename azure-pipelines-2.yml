@@ -55,7 +55,7 @@ jobs:
           projects: 'sort_list.csproj'
       - task: CopyFiles@2
         inputs:
-          sourceFolder: '$(Build.SourcesDirectory)/file_sol.txt'
+          sourceFolder: '$(Build.SourcesDirectory)\file_sol.txt'
           targetFolder: '$(Build.ArtifactStagingDirectory)'
       - task: PublishBuildArtifacts@1
         inputs:
