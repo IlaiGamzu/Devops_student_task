@@ -39,7 +39,7 @@ jobs:
 
       - task: DotNetCoreCLI@2
         inputs:
-          command: 'build'
+          command: 'run'
           projects: 'sort_list.csproj'
 
       - powershell: |
