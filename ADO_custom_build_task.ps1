@@ -1,6 +1,6 @@
 # Path to the AssemblyInfo.cs file
 #$assemblyInfoPath = "C:\C#_PROGRAM\Devops student task IAI\custom_student_task\copy_project_of_assemblyinfo.cs"
-$assemblyInfoPath =-Path "sort_list.AssemblyInfo.cs"
+$assemblyInfoPath =Get-ChildItem $PSScriptRoot\sort_list.AssemblyInfo.cs
 
 # Read the content of AssemblyInfo.cs
 $content = Get-Content -Path $assemblyInfoPath
