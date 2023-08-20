@@ -19,8 +19,9 @@ $content = Get-Content -Path $assemblyInfoPath
 $pattern_des = '\[assembly: System\.Reflection\.AssemblyTitleAttribute\(".*?"\)\]'
 $pattern_com = '\[assembly: System\.Reflection\.AssemblyCompanyAttribute\(".*?"\)\]'
 $pattern_pro = '\[assembly: System\.Reflection\.AssemblyProductAttribute\(".*?"\)\]'
-$pattern_ver = '\[assembly: System\.Reflection\.AssemblyVersionAttribute\("(\d+\.\d+\.\d+\.)(\d+)"\)\]'
-$pattern_ver_file = '\[assembly: System\.Reflection\.AssemblyFileVersionAttribute\("(\d+\.\d+\.\d+\.)(\d+)"\)\]'
+$pattern_ver = '\[assembly: System\.Reflection\.AssemblyVersion\("(\d+\.\d+\.\d+\.)\d+"\)\]'
+$pattern_ver_file = '\[assembly: System\.Reflection\.AssemblyFileVersion\("(\d+\.\d+\.\d+\.)\d+"\)\]'
+
 
 # Process each line from the file
 $newContent = foreach ($line in $content) {
