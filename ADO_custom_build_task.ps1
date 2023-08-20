@@ -22,8 +22,6 @@ $pattern_pro = '\[assembly: System\.Reflection\.AssemblyProductAttribute\(".*?"\
 $pattern_ver = '\[assembly: System\.Reflection\.AssemblyVersion\("(\d+\.\d+\.\d+\.)\d+"\)\]'
 $pattern_ver_file = '\[assembly: System\.Reflection\.AssemblyFileVersion\("(\d+\.\d+\.\d+\.)\d+"\)\]'
 
-
-
 # Process each line from the file
 $newContent = foreach ($line in $content) {
     switch ($true) {
