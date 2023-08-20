@@ -1,6 +1,6 @@
 # Path to the AssemblyInfo.cs file
 #$assemblyInfoPath = "C:\C#_PROGRAM\Devops student task IAI\custom_student_task\copy_project_of_assemblyinfo.cs"
-$assemblyInfoPath = Get-Content -Path "$(Build.SourcesDirectory)\sort_list.AssemblyInfo.cs"
+$assemblyInfoPath =-Path "sort_list.AssemblyInfo.cs"
 
 # Read the content of AssemblyInfo.cs
 $content = Get-Content -Path $assemblyInfoPath
