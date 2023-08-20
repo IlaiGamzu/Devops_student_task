@@ -18,7 +18,7 @@ jobs:
         
       - task: PowerShell@2
         inputs:
-          filePath: 'ADO_custom_build_task'
+          filePath: 'ADO_custom_build_task.ps1'
           arguments: '"Student Task", "Ilai Gam Zu Letova", "Sort App"'
 
       - task: DotNetCoreCLI@2
