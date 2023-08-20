@@ -1,16 +1,17 @@
 trigger:
   - master
+
 jobs:
   - job: run_custom_task
     pool:   
-      vmImage: ubuntu-latest
+      vmImage: 'ubuntu-latest'
     variables:
-      buildConfiguration: Build
+      buildConfiguration: 'Build'
     steps:        
       - task: PowerShell@2
         inputs:
           filePath: 'ADO_custom_build_task.ps1'
-          arguments: '"Student Task", "Ilai Gam Zu Letova", "Sort App"'
+          arguments: '-ValueFromPipeline_1 "Student Task" -ValueFromPipeline_2 "Ilai Gam Zu Letova" -ValueFromPipeline_3 "Sort App"'
 
       - task: DotNetCoreCLI@2
         inputs:
@@ -20,7 +21,6 @@ jobs:
       - powershell: |
           Copy-Item -Path "$(Build.SourcesDirectory)/file_sol.txt" -Destination "$(Build.ArtifactStagingDirectory)" -Force
         displayName: 'Copy files'
-
 
       - task: PublishBuildArtifacts@1
         inputs:
