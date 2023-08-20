@@ -1,0 +1,14 @@
+C:\student project\CS code\sort_list\obj\Debug\net6.0\sort_list.GeneratedMSBuildEditorConfig.editorconfig
+C:\student project\CS code\sort_list\obj\Debug\net6.0\sort_list.AssemblyInfoInputs.cache
+C:\student project\CS code\sort_list\obj\Debug\net6.0\sort_list.AssemblyInfo.cs
+C:\student project\CS code\sort_list\obj\Debug\net6.0\sort_list.csproj.CoreCompileInputs.cache
+C:\student project\CS code\sort_list\bin\Debug\net6.0\sort_list.exe
+C:\student project\CS code\sort_list\bin\Debug\net6.0\sort_list.deps.json
+C:\student project\CS code\sort_list\bin\Debug\net6.0\sort_list.runtimeconfig.json
+C:\student project\CS code\sort_list\bin\Debug\net6.0\sort_list.dll
+C:\student project\CS code\sort_list\bin\Debug\net6.0\sort_list.pdb
+C:\student project\CS code\sort_list\obj\Debug\net6.0\sort_list.dll
+C:\student project\CS code\sort_list\obj\Debug\net6.0\refint\sort_list.dll
+C:\student project\CS code\sort_list\obj\Debug\net6.0\sort_list.pdb
+C:\student project\CS code\sort_list\obj\Debug\net6.0\sort_list.genruntimeconfig.cache
+C:\student project\CS code\sort_list\obj\Debug\net6.0\ref\sort_list.dll
