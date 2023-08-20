@@ -4,8 +4,11 @@ $assemblyInfoPath = $env:X = Get-Content -Path "$(Build.SourcesDirectory)\sort_l
 
 # Read the content of AssemblyInfo.cs
 $content = Get-Content -Path $assemblyInfoPath
-$x_version=Get-Content -Path "$(Build.SourcesDirectory)\num_of_version.txt"
-
+#$x_version=Get-Content -Path "$(Build.SourcesDirectory)\num_of_version.txt"
+#$Version = "1.0.0.$x_version"
+#$newValue = [int]$x_version + 1
+#$newValueAsString = $newValue.ToString()
+#Set-Content -Path "$(Build.SourcesDirectory)\num_of_version.txt" -value $newValueAsString
 # Value to replace with from pipeline
 param(
     [string]$ValueFromPipeline_1,
