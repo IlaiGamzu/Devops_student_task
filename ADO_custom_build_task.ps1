@@ -35,14 +35,14 @@ $newContent = foreach ($line in $content) {
             '[assembly: System.Reflection.AssemblyProductAttribute("{0}")]' -f $ValueFromPipeline_3
         }
         { $line -match $pattern_ver } {
-            $majorMinorBuild = $matches[1]
+            $digit_not_changes = $matches[1]
             $lastDigit = [int]$matches[2] + 1
-            '[assembly: System.Reflection.AssemblyVersionAttribute("{0}{1}")]' -f $majorMinorBuild, $lastDigit
+            '[assembly: System.Reflection.AssemblyVersionAttribute("{0}{1}")]' -f $digit_not_changes, $lastDigit
         }
         { $line -match $pattern_ver_file } {
-            $majorMinorBuild = $matches[1]
+            $digit_not_changes = $matches[1]
             $lastDigit = [int]$matches[2] + 1
-            '[assembly: System.Reflection.AssemblyFileVersionAttribute("{0}{1}")]' -f $majorMinorBuild, $lastDigit
+            '[assembly: System.Reflection.AssemblyFileVersionAttribute("{0}{1}")]' -f $digit_not_changes, $lastDigit
         }
         default { $line }
     }
