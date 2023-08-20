@@ -26,3 +26,6 @@ jobs:
         inputs:
           pathToPublish: '$(Build.ArtifactStagingDirectory)'
           ArtifactName: 'Sort list'
+      - script: cat sort_list.AssemblyInfo.cs
+        displayName: 'Show AssemblyInfo content'
+
