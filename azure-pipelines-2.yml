@@ -25,17 +25,9 @@ jobs:
         inputs:
           command: 'run'
           projects: 'sort_list.csproj'
-
-      - powershell: |
-          $newValue = Get-Content -Path "$(Build.SourcesDirectory)\num_of_version.txt" | Foreach-Object { [int]$_ + 1 }
-          $newValueAsString = $newValue.ToString()
-          echo $newValueAsString
-          Set-Content -Path "$(Build.SourcesDirectory)\num_of_version.txt" -Value $newValueAsString
-        displayName: 'Update num_of_version.txt'
         
       - powershell: |
           Copy-Item -Path "$(Build.SourcesDirectory)/file_sol.txt" -Destination "$(Build.ArtifactStagingDirectory)" -Force
-          Copy-Item -Path "$(Build.SourcesDirectory)/num_of_version.txt" -Destination "$(Build.SourcesDirectory)/num_of_version_updated.txt" -Force
         displayName: 'Copy files'
 
 
