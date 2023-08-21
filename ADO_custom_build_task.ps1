@@ -38,7 +38,8 @@ $newContent = foreach ($line in $content) {
         { $line -match $pattern_ver } {
             $digit_not_changes = $matches[1]
             $lastDigit = [int]$matches[2] + 1
-            '[assembly: System.Reflection.AssemblyVersionAttribute("{0}{1}")]' -f $digit_not_changes, $lastDigit
+            $newVersion = "${digit_not_changes}$lastDigit"
+            ('[assembly: System.Reflection.AssemblyVersionAttribute("{0}")]' -f $newVersion)
         }
         { $line -match $pattern_ver_file } {
             $digit_not_changes = $matches[1]
