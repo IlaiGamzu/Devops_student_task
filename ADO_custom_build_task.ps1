@@ -46,26 +46,16 @@ $newContent = foreach ($line in $content) {
         }
         { $line -match $pattern_test } {
 
-        $first = $matches.Item(1)
-        $second = $matches.Item(2)
-        $third = $matches.Item(3)
-        $fourth = [int]$matches.Item(4) + 1
-        
-        $newVersion = "$first.$second.$third.$fourth"
-        $newLine = '[assembly: System.Reflection.AssemblyFileVersionAttribute("{0}")]' -f $newVersion
-        
-        # Replace the old line with the new line
-        $content = $content -replace [regex]::Escape($line), $newLine
             # Check if the match happened
-            #Write-Host "Matched the line: $line"
+            Write-Host "Matched the line: $line"
 
             # Check the matches
-            #Write-Host "Matches 1: $($matches[1])"
-            #Write-Host "Matches 2: $($matches[2])"
-            #$baseVersion = $matches[1]
-            #$lastDigit = [int]$matches[2] + 1
-            #$newVersion = "${baseVersion}${lastDigit}"
-            #$updatedLine = $line -replace "$baseVersion$matches[2]", $newVersion
+            Write-Host "Matches 1: $($matches[1])"
+            Write-Host "Matches 2: $($matches[2])"
+            $baseVersion = $matches[1]
+            $lastDigit = [int]$matches[2] + 1
+            $newVersion = "${baseVersion}${lastDigit}"
+            $updatedLine = $line -replace "$baseVersion$matches[2]", $newVersion
 
         #$testLine = '[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]'
         #if($testLine -match $pattern_test) {
