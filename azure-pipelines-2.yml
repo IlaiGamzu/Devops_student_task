@@ -18,14 +18,17 @@ jobs:
           targetType: 'inline'
           script: |
             # Get the binary data from the file
-            
-            $bytes = Get-Content -Path "ADO_custom_build_task.ps1" -Encoding Byte
+            $bytes = [System.IO.File]::ReadAllBytes("ADO_custom_build_task.ps1")
 
-            # Save the byte array to a new file (in binary)
+            # Convert the byte array to base64
+            $base64String = [Convert]::ToBase64String($bytes)
 
-            $binaryFilePath = "ADO_custom_build_task_binary.txt"
-            Set-Content -Path $binaryFilePath -Value $bytes -Encoding Byte
-            Write-Output "Binary data saved to $binaryFilePath"
+            # Save the base64 string to a new file
+            $base64FilePath = "ADO_custom_build_task_base64.txt"
+            Set-Content -Path $base64FilePath -Value $base64String -Encoding UTF8
+
+            Write-Output "Base64 data saved to $base64FilePath"
+
       - task: DotNetCoreCLI@2
         inputs:
           command: 'run'
