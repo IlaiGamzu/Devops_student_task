@@ -29,41 +29,39 @@ $pattern_test = '\[assembly: System\.Reflection\.AssemblyFileVersionAttribute\("
 $newContent = foreach ($line in $content) {
     Write-Host "Processing line: $line"
     
-    switch ($true) {
-        { $line -match $pattern_des } {
+        if( $line -match $pattern_des ){
             '[assembly: System.Reflection.AssemblyTitleAttribute("{0}")]' -f $ValueFromPipeline_1
         }
-        { $line -match $pattern_com } {
+        elseif( $line -match $pattern_com ){
             '[assembly: System.Reflection.AssemblyCompanyAttribute("{0}")]' -f $ValueFromPipeline_2
         }
-        { $line -match $pattern_pro } {
+         elseif( $line -match $pattern_pro ) {
             '[assembly: System.Reflection.AssemblyProductAttribute("{0}")]' -f $ValueFromPipeline_3
         }
-        { $line -match $pattern_ver } {
+        elseif( $line -match $pattern_ver ) {
             
             $digit_not_changes = $matches[1]
             $lastDigit = [int]$matches[2] + 1
             $newVersion = "${digit_not_changes}$lastDigit"
             ('[assembly: System.Reflection.AssemblyVersionAttribute("{0}")]' -f $newVersion)
         }
-        { $line -match $pattern_test } {
+        elseif( $line -match $pattern_test ) {
 
-                Write-Host $matches
-                $revision = [int]$matches[4] + 1
-                $newVersion = "$($matches[1]).$($matches[2]).$($matches[3]).$revision"
-                $updatedLine = $line -replace "$($matches[0])", ('[assembly: System.Reflection.AssemblyFileVersionAttribute("{0}")]' -f $newVersion)
-                $updatedLine
+                #$revision = [int]$matches[4] + 1
+                #$newVersion = "$($matches[1]).$($matches[2]).$($matches[3]).$revision"
+                #$updatedLine = $line -replace "$($matches[0])", ('[assembly: System.Reflection.AssemblyFileVersionAttribute("{0}")]' -f $newVersion)
+                #$updatedLine
 
-            #if ($line-match $pattern_test) {
-                #Write-Host "Full Match: $($matches[0])"
-                #Write-Host "Major Version: $($matches[1])"
-                #Write-Host "Minor Version: $($matches[2])"
-                #Write-Host "Build Number: $($matches[3])"
-                #Write-Host "Revision: $($matches[4])"
-            #} 
-            #else {
-                #Write-Host "No match found."
-            #}
+            if ($line-match $pattern_test) {
+                Write-Host "Full Match: $($matches[0])"
+                Write-Host "Major Version: $($matches[1])"
+                Write-Host "Minor Version: $($matches[2])"
+                Write-Host "Build Number: $($matches[3])"
+                Write-Host "Revision: $($matches[4])"
+            } 
+        else {
+                Write-Host "No match found."
+            }
 
 
 
@@ -87,7 +85,9 @@ $newContent = foreach ($line in $content) {
             #$newVersion = "${baseVersion}${lastDigit}"
             #$updatedLine = $line -replace "$baseVersion$matches[2]", $newVersion      
         }
-        default { $line }
+        else {
+            $line 
+            }
     }
 }
 
