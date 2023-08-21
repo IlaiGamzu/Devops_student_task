@@ -60,6 +60,7 @@ $newContent = foreach ($line in $content) {
             #} else {
                 #Write-Host "No match found!"
             #}
+            $all=$matches[0]
             $firstPart = $matches[1]
             $secondPart = $matches[2]
             $thirdPart = $matches[3]
