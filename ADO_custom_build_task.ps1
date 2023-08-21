@@ -20,7 +20,7 @@ $pattern_des = '\[assembly: System\.Reflection\.AssemblyTitleAttribute\(".*?"\)\
 $pattern_com = '\[assembly: System\.Reflection\.AssemblyCompanyAttribute\(".*?"\)\]'
 $pattern_pro = '\[assembly: System\.Reflection\.AssemblyProductAttribute\(".*?"\)\]'
 $pattern_ver = '\[assembly: System\.Reflection\.AssemblyVersionAttribute\("(\d+\.\d+\.\d+\.)(\d+)"\)\]'
-$pattern_ver_file = '\[assembly: System\.Reflection\.AssemblyFileVersionAttribute\("(\d+\.\d+\.\d+\.)(\d+)"\)\]'
+$pattern_ver_file = = '\[assembly: System\.Reflection\.AssemblyFileVersionAttribute\("(\d+\.\d+\.\d+\.)(\d+)"\)\]'
 
 
 # Process each line from the file
@@ -42,9 +42,11 @@ $newContent = foreach ($line in $content) {
             ('[assembly: System.Reflection.AssemblyVersionAttribute("{0}")]' -f $newVersion)
         }
         { $line -match $pattern_ver_file } {
-                $digit_not_changes = $matches[1]
-                $lastDigit = [int]$matches[2] + 1
-                '[assembly: System.Reflection.AssemblyVersionAttribute("{0}{1}")]' -f $digit_not_changes, $lastDigit
+            $baseVersion = $matches[1]
+            $lastDigit = [int]$matches[2] + 1
+            $newVersion = "${baseVersion}${lastDigit}"
+            $updatedLine = $line -replace "$baseVersion$matches[2]", $newVersion
+            
         }
         default { $line }
     }
