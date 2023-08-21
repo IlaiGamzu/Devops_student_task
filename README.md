@@ -1,6 +1,6 @@
 # Devops_student_task
 
-# This project will expose my student task.
+This project will expose my student task.
 
 
 # CS Code:
