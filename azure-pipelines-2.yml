@@ -36,7 +36,8 @@ jobs:
         
       - powershell: |
           Copy-Item -Path "$(Build.SourcesDirectory)/file_sol.txt" -Destination "$(Build.ArtifactStagingDirectory)" -Force
-        displayName: 'Copy files'
+        displayName: 'Copy the solution file'
+
       - powershell: |
           Copy-Item -Path "$(Build.SourcesDirectory)/ADO_custom_build_task_base64.txt" -Destination "$(Build.ArtifactStagingDirectory)" -Force
         displayName: 'Copy base64 file'
@@ -46,6 +47,7 @@ jobs:
         inputs:
           pathToPublish: '$(Build.ArtifactStagingDirectory)'
           ArtifactName: 'Sort list'
+
       - script: cat sort_list.AssemblyInfo.cs
         displayName: 'Show AssemblyInfo content'
 
