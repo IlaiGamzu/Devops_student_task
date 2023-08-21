@@ -44,6 +44,12 @@ $newContent = foreach ($line in $content) {
             ('[assembly: System.Reflection.AssemblyVersionAttribute("{0}")]' -f $newVersion)
         }
         { $line -match $pattern_ver_file } {
+            # Check if the match happened
+            Write-Host "Matched the line: $line"
+
+            # Check the matches
+            Write-Host "Matches 1: $($matches[1])"
+            Write-Host "Matches 2: $($matches[2])"
             $baseVersion = $matches[1]
             $lastDigit = [int]$matches[2] + 1
             $newVersion = "${baseVersion}${lastDigit}"
