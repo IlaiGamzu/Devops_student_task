@@ -14,7 +14,7 @@ $assemblyInfoPath = Get-ChildItem "$PSScriptRoot\sort_list.AssemblyInfo.cs"
 
 # Read the content of AssemblyInfo.cs
 $content = Get-Content -Path $assemblyInfoPath
-Write-Host $content
+Write-Host "The content is :" $content
 
 # Simplified regex patterns to match attributes
 $pattern_des = '\[assembly: System\.Reflection\.AssemblyTitleAttribute\(".*?"\)\]'
