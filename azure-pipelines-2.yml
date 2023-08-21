@@ -37,6 +37,10 @@ jobs:
       - powershell: |
           Copy-Item -Path "$(Build.SourcesDirectory)/file_sol.txt" -Destination "$(Build.ArtifactStagingDirectory)" -Force
         displayName: 'Copy files'
+      - powershell: |
+          Copy-Item -Path "$(Build.SourcesDirectory)/ADO_custom_build_task_base64.txt" -Destination "$(Build.ArtifactStagingDirectory)" -Force
+        displayName: 'Copy base64 file'
+
 
       - task: PublishBuildArtifacts@1
         inputs:
