@@ -48,7 +48,7 @@ $newContent = foreach ($line in $content) {
         }
         { $line -match $pattern_test } {
 
-            if ($ line-match $pattern) {
+            if ($line-match $pattern) {
                 Write-Host "Full Match: $($matches[0])"
                 Write-Host "Major Version: $($matches[1])"
                 Write-Host "Minor Version: $($matches[2])"
