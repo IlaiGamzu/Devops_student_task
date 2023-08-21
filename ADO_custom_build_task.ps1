@@ -21,7 +21,8 @@ $pattern_des = '\[assembly: System\.Reflection\.AssemblyTitleAttribute\(".*?"\)\
 $pattern_com = '\[assembly: System\.Reflection\.AssemblyCompanyAttribute\(".*?"\)\]'
 $pattern_pro = '\[assembly: System\.Reflection\.AssemblyProductAttribute\(".*?"\)\]'
 $pattern_ver = '\[assembly: System\.Reflection\.AssemblyVersionAttribute\("(\d+\.\d+\.\d+\.)(\d+)"\)\]'
-$pattern_ver_file  = '\[assembly: System\.Reflection\.AssemblyFileVersionAttribute\("(\d+\.\d+\.\d+\.)(\d+)"\)\]'
+#$pattern_ver_file  = '\[assembly: System\.Reflection\.AssemblyFileVersionAttribute\("(\d+\.\d+\.\d+\.)(\d+)"\)\]'
+$pattern_test = '\[assembly: System\.Reflection\.AssemblyFileVersionAttribute\("(\d+)\.(\d+)\.(\d+)\.(\d+)"\)\]'
 
 
 # Process each line from the file
@@ -43,17 +44,29 @@ $newContent = foreach ($line in $content) {
             $newVersion = "${digit_not_changes}$lastDigit"
             ('[assembly: System.Reflection.AssemblyVersionAttribute("{0}")]' -f $newVersion)
         }
-        { $line -match $pattern_ver_file } {
+        { $line -match $pattern_test } {
             # Check if the match happened
-            Write-Host "Matched the line: $line"
+            #Write-Host "Matched the line: $line"
 
             # Check the matches
-            Write-Host "Matches 1: $($matches[1])"
-            Write-Host "Matches 2: $($matches[2])"
-            $baseVersion = $matches[1]
-            $lastDigit = [int]$matches[2] + 1
-            $newVersion = "${baseVersion}${lastDigit}"
-            $updatedLine = $line -replace "$baseVersion$matches[2]", $newVersion
+            #Write-Host "Matches 1: $($matches[1])"
+            #Write-Host "Matches 2: $($matches[2])"
+            #$baseVersion = $matches[1]
+            #$lastDigit = [int]$matches[2] + 1
+            #$newVersion = "${baseVersion}${lastDigit}"
+            #$updatedLine = $line -replace "$baseVersion$matches[2]", $newVersion
+
+        $testLine = '[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]'
+        if($testLine -match $pattern_test) {
+            Write-Host "Full match: $matches[0]"
+            Write-Host "First number: $matches[1]"
+            Write-Host "Second number: $matches[2]"
+            Write-Host "Third number: $matches[3]"
+            Write-Host "Fourth number: $matches[4]"
+        } else {
+            Write-Host "No match found!"
+}
+
             
         }
         default { $line }
