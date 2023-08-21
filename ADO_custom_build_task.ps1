@@ -50,16 +50,25 @@ $newContent = foreach ($line in $content) {
             # Check if the match happened
             Write-Host "Matched the line: $line"
 
-            $testLine = '[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]'
-            if($testLine -match $pattern_test) {
-                Write-Host "Full match: $matches[0]"
-                Write-Host "First number: $matches[1]"
-                Write-Host "Second number: $matches[2]"
-                Write-Host "Third number: $matches[3]"
-                Write-Host "Fourth number: $matches[4]"
-            } else {
-                Write-Host "No match found!"
-            }
+            #$testLine = '[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]'
+            #if($testLine -match $pattern_test) {
+                #Write-Host "Full match: $matches[0]"
+                #Write-Host "First number: $matches[1]"
+                #Write-Host "Second number: $matches[2]"
+                #Write-Host "Third number: $matches[3]"
+                #Write-Host "Fourth number: $matches[4]"
+            #} else {
+                #Write-Host "No match found!"
+            #}
+            $firstPart = $matches[1]
+            $secondPart = $matches[2]
+            $thirdPart = $matches[3]
+            $fourthPart = $matches[4]
+
+            Write-Host "First number: $firstPart"
+            Write-Host "Second number: $secondPart"
+            Write-Host "Third number: $thirdPart"
+            Write-Host "Fourth number: $fourthPart"
 
             #$baseVersion = $matches[1]
             #$lastDigit = [int]$matches[2] + 1
