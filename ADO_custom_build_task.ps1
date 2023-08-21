@@ -56,20 +56,7 @@ $newContent = foreach ($line in $content) {
             $baseVersion = $matches[1]
             $lastDigit = [int]$matches[2] + 1
             $newVersion = "${baseVersion}${lastDigit}"
-            $updatedLine = $line -replace "$baseVersion$matches[2]", $newVersion
-
-        #$testLine = '[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]'
-        #if($testLine -match $pattern_test) {
-            #Write-Host "Full match: $matches[0]"
-            #Write-Host "First number: $matches[1]"
-            #Write-Host "Second number: $matches[2]"
-            #Write-Host "Third number: $matches[3]"
-            #Write-Host "Fourth number: $matches[4]"
-        #} else {
-            #Write-Host "No match found!"
-#}
-
-            
+            $updatedLine = $line -replace "$baseVersion$matches[2]", $newVersion      
         }
         default { $line }
     }
