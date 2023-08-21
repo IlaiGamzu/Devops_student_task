@@ -76,7 +76,7 @@ $newContent = foreach ($line in $content) {
             #Write-Host "Fourth number: $matches[4]"
         #} else {
             #Write-Host "No match found!"
-}
+#}
 
             
         }
