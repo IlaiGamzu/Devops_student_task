@@ -45,6 +45,17 @@ $newContent = foreach ($line in $content) {
             ('[assembly: System.Reflection.AssemblyVersionAttribute("{0}")]' -f $newVersion)
         }
         { $line -match $pattern_test } {
+
+        $first = $matches.Item(1)
+        $second = $matches.Item(2)
+        $third = $matches.Item(3)
+        $fourth = [int]$matches.Item(4) + 1
+        
+        $newVersion = "$first.$second.$third.$fourth"
+        $newLine = '[assembly: System.Reflection.AssemblyFileVersionAttribute("{0}")]' -f $newVersion
+        
+        # Replace the old line with the new line
+        $content = $content -replace [regex]::Escape($line), $newLine
             # Check if the match happened
             #Write-Host "Matched the line: $line"
 
@@ -56,15 +67,15 @@ $newContent = foreach ($line in $content) {
             #$newVersion = "${baseVersion}${lastDigit}"
             #$updatedLine = $line -replace "$baseVersion$matches[2]", $newVersion
 
-        $testLine = '[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]'
-        if($testLine -match $pattern_test) {
-            Write-Host "Full match: $matches[0]"
-            Write-Host "First number: $matches[1]"
-            Write-Host "Second number: $matches[2]"
-            Write-Host "Third number: $matches[3]"
-            Write-Host "Fourth number: $matches[4]"
-        } else {
-            Write-Host "No match found!"
+        #$testLine = '[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]'
+        #if($testLine -match $pattern_test) {
+            #Write-Host "Full match: $matches[0]"
+            #Write-Host "First number: $matches[1]"
+            #Write-Host "Second number: $matches[2]"
+            #Write-Host "Third number: $matches[3]"
+            #Write-Host "Fourth number: $matches[4]"
+        #} else {
+            #Write-Host "No match found!"
 }
 
             
