@@ -44,14 +44,14 @@ PublishBuildArtifacts@1- publish the result of cs code in file_sol.txt and the b
 - script: cat sort_list.AssemblyInfo.cs- will shows the changes in the assembly info file.
 
   
-# Export pipeline- the result of task
+# Export Pipeline- The Result Of Task
 
 The logs of pipeline in a zip file: logs_450.zip.
 
 The result of cs code sort_list (in file_sol.txt) and the binary code of custom task are in this folder.
 
 
-# The binary code
+# The Binary Code
 
 The logs of my pipeline publish the binary code of ADO_custom_build_task.ps1 file.
 
