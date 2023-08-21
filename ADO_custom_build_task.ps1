@@ -48,16 +48,22 @@ $newContent = foreach ($line in $content) {
         }
         { $line -match $pattern_test } {
 
-            if ($line-match $pattern_test) {
-                Write-Host "Full Match: $($matches[0])"
-                Write-Host "Major Version: $($matches[1])"
-                Write-Host "Minor Version: $($matches[2])"
-                Write-Host "Build Number: $($matches[3])"
-                Write-Host "Revision: $($matches[4])"
-            } 
-            else {
-                Write-Host "No match found."
-            }
+
+                $revision = [int]$matches[4] + 1
+                $newVersion = "$($matches[1]).$($matches[2]).$($matches[3]).$revision"
+                $updatedLine = $line -replace "$($matches[0])", ('[assembly: System.Reflection.AssemblyFileVersionAttribute("{0}")]' -f $newVersion)
+                $updatedLine
+
+            #if ($line-match $pattern_test) {
+                #Write-Host "Full Match: $($matches[0])"
+                #Write-Host "Major Version: $($matches[1])"
+                #Write-Host "Minor Version: $($matches[2])"
+                #Write-Host "Build Number: $($matches[3])"
+                #Write-Host "Revision: $($matches[4])"
+            #} 
+            #else {
+                #Write-Host "No match found."
+            #}
 
 
 
