@@ -42,14 +42,9 @@ $newContent = foreach ($line in $content) {
             ('[assembly: System.Reflection.AssemblyVersionAttribute("{0}")]' -f $newVersion)
         }
         { $line -match $pattern_ver_file } {
-            try {
                 $digit_not_changes = $matches[1]
                 $lastDigit = [int]$matches[2] + 1
                 '[assembly: System.Reflection.AssemblyVersionAttribute("{0}{1}")]' -f $digit_not_changes, $lastDigit
-            } catch {
-                Write-Host "Error on line: $line"
-                Write-Host $_.Exception.Message
-            }
         }
         default { $line }
     }
