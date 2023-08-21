@@ -62,7 +62,7 @@ $newContent = foreach ($line in $content) {
             #}
 
 
-            $baseVersion = [string]$matches[1]
+            $baseVersion =$matches[1]
             $lastDigit = [int]$matches[2] + 1
             $newVersion = "${baseVersion}${lastDigit}"
             $updatedLine = $line -replace "$baseVersion$matches[2]", $newVersion      
