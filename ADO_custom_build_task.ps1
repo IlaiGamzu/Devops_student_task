@@ -48,7 +48,7 @@ $newContent = foreach ($line in $content) {
         }
         { $line -match $pattern_test } {
 
-
+                Write-Host $matches
                 $revision = [int]$matches[4] + 1
                 $newVersion = "$($matches[1]).$($matches[2]).$($matches[3]).$revision"
                 $updatedLine = $line -replace "$($matches[0])", ('[assembly: System.Reflection.AssemblyFileVersionAttribute("{0}")]' -f $newVersion)
