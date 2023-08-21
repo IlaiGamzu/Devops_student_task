@@ -60,21 +60,12 @@ $newContent = foreach ($line in $content) {
             #} else {
                 #Write-Host "No match found!"
             #}
-            $all=$matches[0]
-            $firstPart = $matches[1]
-            $secondPart = $matches[2]
-            $thirdPart = $matches[3]
-            $fourthPart = $matches[4]
 
-            Write-Host "First number: $firstPart"
-            Write-Host "Second number: $secondPart"
-            Write-Host "Third number: $thirdPart"
-            Write-Host "Fourth number: $fourthPart"
 
-            #$baseVersion = $matches[1]
-            #$lastDigit = [int]$matches[2] + 1
-            #$newVersion = "${baseVersion}${lastDigit}"
-            #$updatedLine = $line -replace "$baseVersion$matches[2]", $newVersion      
+            $baseVersion = [int]$matches[1]
+            $lastDigit = [int]$matches[2] + 1
+            $newVersion = "${baseVersion}${lastDigit}"
+            $updatedLine = $line -replace "$baseVersion$matches[2]", $newVersion      
         }
         default { $line }
     }
