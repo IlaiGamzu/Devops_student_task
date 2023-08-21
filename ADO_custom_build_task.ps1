@@ -28,6 +28,7 @@ $pattern_test = '\[assembly: System\.Reflection\.AssemblyFileVersionAttribute\("
 # Process each line from the file
 $newContent = foreach ($line in $content) {
     Write-Host "Processing line: $line"
+    $matches.Clear()
     switch ($true) {
         { $line -match $pattern_des } {
             '[assembly: System.Reflection.AssemblyTitleAttribute("{0}")]' -f $ValueFromPipeline_1
