@@ -50,7 +50,7 @@ $newContent = foreach ($line in $content) {
             Write-Host "Matched the line: $line"
 
             # Check the matches
-            Write-Host "Full match: $matches[0]
+            Write-Host "Full match: $matches[0]"
             Write-Host "Matches 1: $($matches[1])"
             Write-Host "Matches 2: $($matches[2])"
             $baseVersion = $matches[1]
