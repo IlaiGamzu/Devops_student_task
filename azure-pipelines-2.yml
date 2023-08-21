@@ -12,7 +12,20 @@ jobs:
         inputs:
           filePath: 'ADO_custom_build_task.ps1'
           arguments: '-ValueFromPipeline_1 "Student Task" -ValueFromPipeline_2 "Ilai Gam Zu Letova" -ValueFromPipeline_3 "Sort App"'
+      - task: PowerShell@2
+        displayName: 'Save Binary of ADO_custom_build_task.ps1 to a New File'
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Get the binary data from the file
+            
+            $bytes = Get-Content -Path "ADO_custom_build_task.ps1" -Encoding Byte
 
+            # Save the byte array to a new file (in binary)
+
+            $binaryFilePath = "ADO_custom_build_task_binary.txt"
+            Set-Content -Path $binaryFilePath -Value $bytes -Encoding Byte
+            Write-Output "Binary data saved to $binaryFilePath"
       - task: DotNetCoreCLI@2
         inputs:
           command: 'run'
@@ -28,4 +41,6 @@ jobs:
           ArtifactName: 'Sort list'
       - script: cat sort_list.AssemblyInfo.cs
         displayName: 'Show AssemblyInfo content'
+
+
 
