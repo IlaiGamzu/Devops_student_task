@@ -1,43 +1,46 @@
 This project will expose my student task.
-You can see my cs code that sort list, custom build task and my pipeline.
+
 
 --CS Code:
-The purpose: Sort lists of name from two files and put the result in sol_file.
-I use in ArrayList to take the two content of two files and sort them.
-The result will show in file_sol, a new list of names of the sort by alpha- beit.
-The result will output on screen.
+
+The purpose: Sort lists of names from two files and put the result in sol_file. I used ArrayList to take the two contents of two files and sort them. The result will show in file_sol, a new list of names of the sort by alpha- beit. The result will output on screen.
 
 
 --Custom Task:
-I used in custom_1.ps1 file to implement the mission.
-The custom_1.ps1 works that it moves on all assembly info of the files and change the details.
+
+I used ADO_custom_build_task.ps1 file to implement the mission. The ADO_custom_build_task.ps1 works that it moves on all assembly info of the files and change the details. 
+
 In which iteration the assembly info will change by the next patterns:
 
-$pattern_des = '(\[assembly: AssemblyDescription\("")|(\[assembly: AssemblyDescription\(")([^"]*)("\)\])'
-$pattern_com = '(\[assembly: AssemblyCompany\("")|(\[assembly: AssemblyCompany\(")([^"]*)("\)\])'
-$pattern_pro = '(\[assembly: AssemblyProduct\("")|(\[assembly: AssemblyCompany\(")([^"]*)("\)\])'
-$pattern_ver = '(\[assembly: AssemblyVersion\(")(\d+\.\d+\.\d+\.)(\d+)("\)\])'
-$pattern_ver_file = '(\[assembly: AssemblyFileVersion\(")(\d+\.\d+\.\d+\.)(\d+)("\)\])'
+$pattern_des = '\[assembly: System\.Reflection\.AssemblyTitleAttribute\(".*?"\)\]'
 
-The three first pattern I get from the task "Assembly-Info-NetCore@3",
-and the version number I get from the file num_of_version that in each run the number raise by one.
+$pattern_com = '\[assembly: System\.Reflection\.AssemblyCompanyAttribute\(".*?"\)\]'
+
+$pattern_pro = '\[assembly: System\.Reflection\.AssemblyProductAttribute\(".*?"\)\]'
+
+$pattern_ver = '\[assembly: System\.Reflection\.AssemblyVersionAttribute\("(\d+\.\d+\.\d+\.)(\d+)"\)\]'
+
+$pattern_ver_file = '\[assembly: System\.Reflection\.AssemblyFileVersionAttribute\("(\d+)\.(\d+)\.(\d+)\.(\d+)"\)\]'
+
+The three first patterns I got from the task "Assembly-Info-NetCore@3", and the version number I got from the file num_of_version that in each run the number raise by one.
+
 
 --Yaml Pipeline
-The Yaml pipeline get the source of files to sort_list.cs code and run the assembly info
-It use in the next tasks:
-Assembly-Info-NetCore@3- run the assembly info.
-PowerShell@2- run power shell script of custom_1.ps1.
+
+The Yaml Pipeline get the source of files: sort_list.cs and ADO_custom_build_task.ps1 code and run them.
+
+I use in the next tasks:
+
+PowerShell@2- run power shell script of ADO_custom_build_task.ps1.
+
 DotNetCoreCLI@2- run cs code that sort lists.
-CopyFiles@2- copy the result of cs code to a new file.
-PublishBuildArtifacts@1- publish the result.
+
+-scripts: that copy the result of cs code and custom task to a new files.
+
+PublishBuildArtifacts@1- publish the result of cs code in file_sol.txt and the binary of ADO_custom_build_task.ps1 .
 
 
--- Task Notes:
-In part 3 you ask to change the assembly info, I don't understand if you want that the assembly info in c# code and change it or to use in task.
-As a result I will upload also my code of assembly_info.cs and a new script that change content in assembly_info.cs
+--Export pipeline
 
-
-
-
-
+The logs of pipeline in a zip file: logs_450.zip
 
