@@ -28,7 +28,7 @@ $pattern_test = '\[assembly: System\.Reflection\.AssemblyFileVersionAttribute\("
 # Process each line from the file
 $newContent = foreach ($line in $content) {
     Write-Host "Processing line: $line"
-    $matches.Clear()
+    
     switch ($true) {
         { $line -match $pattern_des } {
             '[assembly: System.Reflection.AssemblyTitleAttribute("{0}")]' -f $ValueFromPipeline_1
@@ -40,13 +40,14 @@ $newContent = foreach ($line in $content) {
             '[assembly: System.Reflection.AssemblyProductAttribute("{0}")]' -f $ValueFromPipeline_3
         }
         { $line -match $pattern_ver } {
+            
             $digit_not_changes = $matches[1]
             $lastDigit = [int]$matches[2] + 1
             $newVersion = "${digit_not_changes}$lastDigit"
             ('[assembly: System.Reflection.AssemblyVersionAttribute("{0}")]' -f $newVersion)
         }
         { $line -match $pattern_test } {
-
+            $matches.Clear()
             # Check if the match happened
             Write-Host "Matched the line: $line"
 
