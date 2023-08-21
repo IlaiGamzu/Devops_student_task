@@ -89,7 +89,7 @@ $newContent = foreach ($line in $content) {
             $line 
             }
     }
-}
+#}
 
 # Save the modified content back to AssemblyInfo.cs
 $newContent | Set-Content -Path $assemblyInfoPath
